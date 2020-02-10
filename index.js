@@ -33,7 +33,7 @@ var db = new Datastore({ filename: './data.db', autoload: true });
 var databaseEntry = {user:'user2', pass:'test2'};
 
 /*
-db.insert(doc, function (err, newDoc) {
+db.insert(databaseEntry, function (err, newDoc) {
   console.log('insert complete ' + err);
 });
 */
