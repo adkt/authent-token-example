@@ -1,9 +1,16 @@
 // Import stylesheets
 import './style.css';
+import $ from 'jquery';
 
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
+// Initialise HTML
+$('#app').html('<h1>Auth test</h1>');
+$('#login').val('user1');
+$('#pass').val('test');
+$('#result').html('Pending...');
+
+$('#send').on('click',function(){
+  test();
+});
 
 //Create Database
 var Datastore = require('nedb')
@@ -22,3 +29,6 @@ db.find({ pass: 'test' }, function (err, docs) {
 });
 
 db.persistence.compactDatafile();
+
+
+function test(){console.log('attempt');}
