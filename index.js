@@ -2,6 +2,20 @@
 import './style.css';
 import $ from 'jquery';
 
+
+const fs = require('fs');
+/*
+fs.writeFile("test.data", "asdasdsadsadsa", function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("The file was saved!");
+}); 
+
+var testdoc = fs.readFileSync('test.data','utf8');
+console.log(testdoc);
+*/
+
 // Initialise HTML
 $('#app').html('<h1>Auth test</h1>');
 $('#login').val('user1');
@@ -9,14 +23,14 @@ $('#pass').val('test');
 $('#result').html('Pending...');
 
 $('#send').on('click',function(){
-  test();
+  login();
 });
 
 //Create Database
 var Datastore = require('nedb')
 var db = new Datastore({ filename: './data.db', autoload: true });
 
-var doc = {user:'user1', pass:'test'};
+var databaseEntry = {user:'user2', pass:'test2'};
 
 /*
 db.insert(doc, function (err, newDoc) {
@@ -30,5 +44,14 @@ db.find({ pass: 'test' }, function (err, docs) {
 
 db.persistence.compactDatafile();
 
+var currentUser = $('#login').val();
 
-function test(){console.log('attempt');}
+function login(){
+  db.find({user:currentUser}, function (err, docs){
+    if (docs[0].pass == $('#pass').val()){
+      console.log('Pass is correct');
+    } else {
+      console.log('Pass is incorrect');
+    }
+  })
+}
